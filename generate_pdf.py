@@ -6,23 +6,11 @@ def build_pdf(output_path):
     width = 612
     height = 792
 
-    # Streams and objects
     objects = []
 
     def add_object(content):
         objects.append(content)
         return len(objects)
-
-    # We will assemble object definitions
-    # Object 1: Catalog
-    # Object 2: Pages
-    # Object 3: Page 1
-    # Object 4: Font Helvetica
-    # Object 5: Font Helvetica-Bold
-    # Object 6: Font Helvetica-Oblique
-    # Object 7: Content stream
-    # Object 8: Link annotation for Live Game
-    # Object 9: Link annotation for Store
 
     stream_lines = []
 
@@ -72,8 +60,8 @@ def build_pdf(output_path):
 
     # Header text
     draw_text("F2", 10, 50, 742, "OFFICIAL ACCESS GUIDE & OWNER MANUAL", 0.918, 0.345, 0.047)
-    draw_text("F2", 22, 50, 715, "CatCoding : Interactive Cat Games Hub", 1.0, 1.0, 1.0)
-    draw_text("F1", 10.5, 50, 694, "Sensory Enrichment & Interactive Touch Games for Cats", 0.85, 0.85, 0.85)
+    draw_text("F2", 22, 50, 715, "Cat Coding Final Boss", 1.0, 1.0, 1.0)
+    draw_text("F1", 10.5, 50, 694, "Interactive Sensory Games & Behavior Enrichment Hub for Cats", 0.85, 0.85, 0.85)
 
     # 4. Thank You Hero Card (White card with drop shadow effect)
     # Shadow
@@ -87,9 +75,9 @@ def build_pdf(output_path):
 
     # Content inside Thank You Card
     draw_text("F2", 17, 72, 626, "Thank You for Your Purchase!", 0.918, 0.345, 0.047)
-    draw_text("F1", 10.5, 72, 604, "We are thrilled to welcome you and your furry friend to CatCoding!", 0.20, 0.20, 0.20)
+    draw_text("F1", 10.5, 72, 604, "We are thrilled to welcome you and your feline friend to Cat Coding Final Boss!", 0.20, 0.20, 0.20)
     draw_text("F1", 10.5, 72, 588, "This hub was crafted to provide stimulating, safe, and engaging entertainment", 0.20, 0.20, 0.20)
-    draw_text("F1", 10.5, 72, 572, "engineered specifically for feline predatory instincts and curiosity.", 0.20, 0.20, 0.20)
+    draw_text("F1", 10.5, 72, 572, "engineered specifically for feline predatory instincts, reflexes, and curiosity.", 0.20, 0.20, 0.20)
     draw_text("F3", 9.5, 72, 554, "Created with care by arbaazalim | Lifetime Access Included", 0.45, 0.45, 0.45)
 
     # 5. Prominent Live Web Access Button / Card
@@ -107,9 +95,9 @@ def build_pdf(output_path):
     set_line_width(2.0)
     draw_rect(btn_x, btn_y, btn_w, btn_h, fill=True, stroke=True)
 
-    draw_text("F2", 11, btn_x + 24, btn_y + 50, "CLICK TO LAUNCH THE WEB APP INSTANTLY (ONLINE):", 1.0, 0.85, 0.30)
+    draw_text("F2", 11, btn_x + 24, btn_y + 50, "CLICK TO LAUNCH THE GAME INSTANTLY IN YOUR BROWSER:", 1.0, 0.85, 0.30)
     draw_text("F2", 15, btn_x + 24, btn_y + 28, "https://intzarbaz.github.io/catcoding-games-hub/", 1.0, 1.0, 1.0)
-    draw_text("F1", 9.5, btn_x + 24, btn_y + 12, "Works in any modern browser on iPad, Android tablets, phones, and laptops.", 0.90, 0.95, 0.95)
+    draw_text("F1", 9.5, btn_x + 24, btn_y + 12, "Works seamlessly on iPad, Android tablets, smartphones, and computers.", 0.90, 0.95, 0.95)
 
     # 6. Two-Column Feature & Quickstart Cards
     col_w = (width - 116) / 2
@@ -146,7 +134,7 @@ def build_pdf(output_path):
         draw_text("F1", 9.0, col1_x + 24, cur_y - 12, desc, 0.25, 0.25, 0.25)
         cur_y -= 31
 
-    # Right Column: Setup Tips & Offline Play
+    # Right Column: Setup Tips & Device Recommendations
     col2_x = 50 + col_w + 16
     col2_y = 168
     # shadow
@@ -161,14 +149,14 @@ def build_pdf(output_path):
     # Title bar
     set_fill_color(0.98, 0.93, 0.84)
     draw_rect(col2_x, col2_y + col_h - 28, col_w, 28, fill=True, stroke=True)
-    draw_text("F2", 11, col2_x + 14, col2_y + col_h - 19, "QUICKSTART & OFFLINE USE", 0.11, 0.10, 0.09)
+    draw_text("F2", 11, col2_x + 14, col2_y + col_h - 19, "QUICKSTART & PRO TIPS", 0.11, 0.10, 0.09)
 
     tips = [
         ("1. Best Device Setup:", "Place your tablet flat on a rug or sofa."),
         ("2. Enable Screen Lock:", "Use Guided Access (iOS) or App Pin (Android)."),
         ("3. Exit Game Mode:", "Hold the exit ring for 2 seconds to unlock."),
-        ("4. Play 100% Offline:", "Save the attached HTML file to your device."),
-        ("   No Internet Needed:", "Double-tap the HTML file to play anywhere!"),
+        ("4. Add to Home Screen:", "Bookmark or add to home screen for 1-tap play!"),
+        ("   Progress Saves:", "Your diary, stats & preferences save in browser."),
         ("5. Screen Protection:", "A tempered glass protector is recommended.")
     ]
     cur_y = col2_y + col_h - 48
@@ -188,21 +176,11 @@ def build_pdf(output_path):
     draw_text("F2", 11, 68, bot_y + 54, "NEED HELP OR HAVE QUESTIONS?", 0.918, 0.345, 0.047)
     draw_text("F1", 9.5, 68, bot_y + 38, "Visit your creator store: https://arbaazalim.gumroad.com", 0.15, 0.15, 0.15)
     draw_text("F1", 9.0, 68, bot_y + 22, "Check back anytime for game updates, new levels, and more cat enrichment releases.", 0.35, 0.35, 0.35)
-    draw_text("F3", 8.5, 68, bot_y + 8, "CatCoding 2026. All rights reserved. Built for happy, active cats worldwide.", 0.55, 0.55, 0.55)
+    draw_text("F3", 8.5, 68, bot_y + 8, "Cat Coding Final Boss 2026. All rights reserved. Built for happy cats worldwide.", 0.55, 0.55, 0.55)
 
     stream_data = "\n".join(stream_lines).encode("latin1")
 
     # Build PDF Objects
-    # Obj 1: Catalog
-    # Obj 2: Pages
-    # Obj 3: Page 1
-    # Obj 4: Font Helvetica (F1)
-    # Obj 5: Font Helvetica-Bold (F2)
-    # Obj 6: Font Helvetica-Oblique (F3)
-    # Obj 7: Link annotation for Live Game
-    # Obj 8: Link annotation for Gumroad Store
-    # Obj 9: Content Stream
-
     pdf_body = []
     offsets = []
 
@@ -249,7 +227,6 @@ def build_pdf(output_path):
     append_obj("6 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >>\nendobj\n")
 
     # Obj 7: Link annotation for Game URL (over the prominent teal button)
-    # Button rect: [50, 440, 50+btn_w, 440+btn_h]
     append_obj(
         "7 0 obj\n"
         f"<< /Type /Annot /Subtype /Link /Rect [{btn_x} {btn_y} {btn_x + btn_w} {btn_y + btn_h}]\n"

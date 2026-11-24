@@ -135,10 +135,6 @@
 
       <!-- Right Actions -->
       <div class="flex items-center gap-2">
-        <button id="open-creator-btn" type="button" title="Customize Affiliate Links" class="ink-btn bg-white hover:bg-orange-50 text-stone-900 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5">
-          <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
-          <span class="hidden sm:inline">Creator Setup</span>
-        </button>
         <a href="https://www.instagram.com/catcodingfinalboss/" target="_blank" rel="noopener noreferrer" class="ink-btn bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5">
           <i data-lucide="instagram" class="w-4 h-4"></i>
           <span class="hidden sm:inline">Follow</span>
@@ -312,9 +308,6 @@
               Global ($)
             </button>
           </div>
-          <button id="gear-edit-links-btn" type="button" class="text-xs font-bold text-orange-600 hover:text-orange-700 underline flex items-center gap-1">
-            <i data-lucide="pencil" class="w-3 h-3"></i> Customize affiliate links
-          </button>
         </div>
       </div>
 
@@ -437,7 +430,6 @@
         <span class="font-medium text-stone-600">2D Cat Behavior Reels &amp; Interactive Play</span>
       </div>
       <div class="flex items-center gap-4">
-        <button id="footer-creator-btn" type="button" class="font-bold text-stone-800 hover:text-orange-600 underline">Creator Link Manager</button>
         <a href="https://www.instagram.com/catcodingfinalboss/" target="_blank" rel="noopener noreferrer" class="font-bold text-orange-600 hover:text-orange-700">Instagram ↗</a>
       </div>
     </div>
@@ -534,39 +526,6 @@
         <button id="summary-share-btn" type="button" class="ink-btn bg-white hover:bg-orange-50 text-stone-900 py-2.5 px-4 rounded-xl text-sm font-bold flex items-center justify-center gap-1.5">
           <i data-lucide="share-2" class="w-4 h-4"></i> Copy Story Caption
         </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== CREATOR AFFILIATE LINK MANAGER MODAL ==================== -->
-  <div id="creator-modal" class="fixed inset-0 z-50 hidden bg-stone-900/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="ink-card rounded-3xl max-w-2xl w-full max-h-[88vh] flex flex-col bg-[#FAF6F0] overflow-hidden">
-      <div class="p-5 bg-white border-b-2 border-stone-900 flex items-center justify-between gap-3">
-        <div>
-          <h3 class="text-lg font-black text-stone-900">Creator Setup — Affiliate Links</h3>
-          <p class="text-xs text-stone-600">Paste your real Amazon.in / Amazon.com affiliate links here. Changes save locally &amp; can be exported.</p>
-        </div>
-        <button id="creator-close-btn" type="button" aria-label="Close" class="p-2 rounded-xl border-2 border-stone-900 bg-white hover:bg-stone-100">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
-      </div>
-
-      <div id="creator-form-list" class="p-5 overflow-y-auto space-y-3 flex-1">
-        <!-- Populated by JS -->
-      </div>
-
-      <div class="p-4 bg-white border-t-2 border-stone-900 flex flex-wrap items-center justify-between gap-2">
-        <button id="creator-reset-btn" type="button" class="px-3.5 py-2 rounded-xl text-xs font-bold text-stone-600 hover:bg-stone-100 border border-stone-300">
-          Reset Defaults
-        </button>
-        <div class="flex items-center gap-2">
-          <button id="creator-copy-json-btn" type="button" class="ink-btn bg-white hover:bg-orange-50 text-stone-900 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">
-            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Config JSON
-          </button>
-          <button id="creator-save-btn" type="button" class="ink-btn bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-extrabold">
-            Save Changes
-          </button>
-        </div>
       </div>
     </div>
   </div>
@@ -1076,56 +1035,6 @@
             </div>
           </div>
         `).join('');
-      }
-
-      /* ===================== CREATOR AFFILIATE LINK MODAL ===================== */
-      function openCreatorModal() {
-        const modal = document.getElementById('creator-modal');
-        const list = document.getElementById('creator-form-list');
-        if (!modal || !list) return;
-
-        list.innerHTML = state.products.map((p, idx) => `
-          <div class="bg-white border-2 border-stone-900 rounded-2xl p-4 space-y-2.5">
-            <div class="flex items-center justify-between gap-2">
-              <span class="font-extrabold text-sm text-stone-900">${p.emoji} ${p.name}</span>
-              <span class="text-[11px] font-bold uppercase text-stone-500">${p.category}</span>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <div>
-                <label class="block text-[11px] font-bold text-stone-600 mb-1">India Price (₹)</label>
-                <input type="text" data-idx="${idx}" data-field="priceIN" value="${p.priceIN.replace(/"/g, '&quot;')}" class="creator-input w-full px-3 py-1.5 rounded-xl border border-stone-300 text-xs font-semibold focus:outline-none focus:border-stone-900" />
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold text-stone-600 mb-1">Global Price ($)</label>
-                <input type="text" data-idx="${idx}" data-field="priceUS" value="${p.priceUS.replace(/"/g, '&quot;')}" class="creator-input w-full px-3 py-1.5 rounded-xl border border-stone-300 text-xs font-semibold focus:outline-none focus:border-stone-900" />
-              </div>
-              <div class="sm:col-span-2">
-                <label class="block text-[11px] font-bold text-stone-600 mb-1">Amazon.in Affiliate URL</label>
-                <input type="url" data-idx="${idx}" data-field="urlIN" value="${p.urlIN.replace(/"/g, '&quot;')}" class="creator-input w-full px-3 py-1.5 rounded-xl border border-stone-300 text-xs font-mono focus:outline-none focus:border-stone-900" />
-              </div>
-              <div class="sm:col-span-2">
-                <label class="block text-[11px] font-bold text-stone-600 mb-1">Amazon.com / Global Affiliate URL</label>
-                <input type="url" data-idx="${idx}" data-field="urlUS" value="${p.urlUS.replace(/"/g, '&quot;')}" class="creator-input w-full px-3 py-1.5 rounded-xl border border-stone-300 text-xs font-mono focus:outline-none focus:border-stone-900" />
-              </div>
-            </div>
-          </div>
-        `).join('');
-
-        modal.classList.remove('hidden');
-      }
-
-      function saveCreatorModal() {
-        document.querySelectorAll('.creator-input').forEach((inp) => {
-          const idx = Number(inp.getAttribute('data-idx'));
-          const field = inp.getAttribute('data-field');
-          if (state.products[idx] && inp.value.trim()) {
-            state.products[idx][field] = inp.value.trim();
-          }
-        });
-        saveState();
-        renderGear();
-        document.getElementById('creator-modal').classList.add('hidden');
-        showToast('Affiliate links updated!');
       }
 
       /* ===================== FULLSCREEN CANVAS GAME ENGINE ===================== */
@@ -1932,25 +1841,6 @@
           const gObj = GAMES.find((g) => g.id === game.mode) || GAMES[0];
           const caption = `My cat just caught ${game.catches} ${gObj.preyNoun} on @catcodingfinalboss's free cat game! 🐾🎮`;
           copyText(caption, 'Story caption copied!');
-        });
-
-        // Creator Modal actions
-        document.getElementById('open-creator-btn').addEventListener('click', openCreatorModal);
-        document.getElementById('gear-edit-links-btn').addEventListener('click', openCreatorModal);
-        document.getElementById('footer-creator-btn').addEventListener('click', openCreatorModal);
-        document.getElementById('creator-close-btn').addEventListener('click', () => {
-          document.getElementById('creator-modal').classList.add('hidden');
-        });
-        document.getElementById('creator-save-btn').addEventListener('click', saveCreatorModal);
-        document.getElementById('creator-reset-btn').addEventListener('click', () => {
-          state.products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
-          saveState();
-          renderGear();
-          openCreatorModal();
-          showToast('Reset to starter products.');
-        });
-        document.getElementById('creator-copy-json-btn').addEventListener('click', () => {
-          copyText(JSON.stringify(state.products, null, 2), 'Product JSON copied!');
         });
 
         if (window.lucide) window.lucide.createIcons();
